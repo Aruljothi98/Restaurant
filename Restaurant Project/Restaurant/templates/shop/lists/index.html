@@ -1,0 +1,32 @@
+{% extends 'shop/layouts/main.html'%}
+{%block title%}
+Restaurant | Menu page
+{%endblock title%}
+
+{%block content%}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4>ITEMS</h4>
+                <hr style="border-color:black">
+            </div>
+            {% for item in List %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card my-3">
+                    <img src="{{item.list_image.url}}" class="card-image-top" alt="Menu" style="height:220px;">
+                    <a href="{% url 'list_details' menu_name item.name %}">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ item.name }}</h5>
+                            <p class="card-text">
+                                <span class="float-end price">Rs.{{ item.price | stringformat:'d'}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{%endblock content%}

@@ -1,0 +1,47 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: bisque;
+}
+
+a {
+    text-decoration: none;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    object-position: top;
+    height: 120vh;
+    overflow: hidden;
+}
+
+.pic-box {
+    position: relative;
+}
+
+.Trending {
+    background-color: #00ffbf;
+    color: white;
+    width: 70px;
+    text-align: center;
+    font-weight: bold;
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+    top: 0;
+    left: 10px;
+    position: absolute;
+    z-index: 10;
+}
+
+
+.price {
+    font-weight: bold;
+    background-color: green;
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+}

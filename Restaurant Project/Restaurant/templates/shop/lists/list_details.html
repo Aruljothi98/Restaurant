@@ -1,0 +1,133 @@
+{% extends 'shop/layouts/main.html'%}
+{%block title%}
+Restaurant | Menu page
+{%endblock title%}
+{%block content%}
+<section class="bg-light py-4 my-5" style="min-height: 600px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{{List}}details</h4>
+                <hr style="border-color:#b8bfc2;">
+            </div>
+            <div class="col-4 my-3 pic-box">
+                {% if List.trending %}
+                <div class="Trending">Trending</div>
+                {% endif %}
+                <img src="{{List.list_image.url}}" class="card-image-top" style="height: 40vh" alt="">
+            </div>
+            <div class="col-8 my-3">
+                <h5 class="text-success">{{List | upper}}</h5>
+                <h6 class="my-2 text-danger">price : Rs.{{List.price}}</h6>
+                <div class="my-3">
+                    {% if List.quantity > 0 %}
+                    <input type="hidden" value="{{List.id}}" id="pid">
+                    <p>
+                    <div class="input-group" style="width: 150px;">
+                        <button class="input-group-text bg-success text-light" id="btnminus"><i
+                                class="fa fa-minus"></i></button>
+                        <input type="text" name="qty" id="txtqty" value="1" class="form-control text-center">
+                        <button class="input-group-text bg-success text-light" id="btnplus"><i
+                                class="fa fa-plus"></i></button>
+                    </div>
+                    </p>
+                    <button class="btn btn-primary" id="btncart"><i class="fa fa-shopping-cart"></i> AddtoCart</button>
+                    {% else %}
+                    <button class="btn btn-secondary"><i class="fa fa-minus"></i> Out of Stock</button>
+                    {% endif %}
+                    <button class="btn btn-danger" id="btnfav"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const btnplus = document.getElementById("btnplus");
+        const btnminus = document.getElementById("btnminus");
+        const txtqty = document.getElementById("txtqty");
+        const pid = document.getElementById("pid");
+        const btncart = document.getElementById("btncart");
+        const btnfav = document.getElementById("btnfav");
+
+        btnplus.addEventListener('click', function () {
+            let qty = parseInt(txtqty.value, 10);
+            qty = isNaN(qty) ? 0 : qty;
+            if (qty < 10) {
+                qty++;
+                txtqty.value = qty;
+            }
+        });
+
+        btnminus.addEventListener('click', function () {
+            let qty = parseInt(txtqty.value, 10);
+            qty = isNaN(qty) ? 0 : qty;
+            if (qty > 1) {
+                qty--;
+                txtqty.value = qty;
+            }
+        });
+
+        btncart.addEventListener('click', function () {
+            let qty = parseInt(txtqty.value, 10);
+            qty = isNaN(qty) ? 0 : qty;
+            if (qty > 0) {
+                let postobj = {
+                    'list_qty': qty,
+                    'pid': pid.value,
+                }
+                console.log(postobj)
+                fetch("/addtocart", {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: JSON.stringify(postobj)
+
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    //console.log(data);
+                    alert(data['status'])
+                })
+            } else {
+                alert("please Enter the Quantity");
+            }
+
+        });
+
+        btnfav.addEventListener('click', function () {
+            let postobj = {
+                'pid': pid.value,
+            }
+            console.log(postobj)
+
+            fetch("/favourite", {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-with': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token}}',
+                },
+                body: JSON.stringify(postobj)
+
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                //console.log(data);
+                alert(data['status'])
+            })
+        });
+
+
+    });
+
+</script>
+
+{%endblock content%}

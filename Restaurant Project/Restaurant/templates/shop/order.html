@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: bisque;
+
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 10px auto;
+            font-size: 50px;
+        }
+
+        .row {
+            text-align: center;
+        }
+
+        .container-fluid {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+
+        fieldset {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid black;
+            font-size: 20px;
+        }
+
+        legend {
+            margin-left: 20px;
+            font-size: 30px;
+            color: green;
+            text-align: center;
+        }
+
+        input {
+            width: auto;
+            margin: 5px;
+            padding: 3px;
+            font-size: 15px;
+
+        }
+
+        h3 {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+            text-align: center;
+        }
+
+        table td,
+        table th {
+            padding: 5px;
+            margin: 0;
+            border: 1px solid #000000;
+        }
+
+        table tr td:last-child {
+            text-align: center;
+        }
+
+        ul li {
+            padding: 5px;
+            margin: 10px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Restaurant</h2>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    Full Name: <input type="text" id="name"> <br />
+
+                    Your Email: <input type="text" id="email">
+                </fieldset>
+            </div>
+
+
+            <div class="row">
+                <fieldset>
+                    <legend>Your Orders</legend>
+                    <table border="1px" cellpadding="1px">
+                        <tr>
+                            <td>Idly (Rs. 10)</td>
+                            <td><input type="text" id="Idly"></td>
+                        </tr>
+                        <tr>
+                            <td>Dosa (Rs. 35)</td>
+                            <td><input type="text" id="Dosa">
+                        </tr>
+                        <tr>
+                            <td>Pongal (Rs. 40)</td>
+                            <td><input type="text" id="Pongal"></td>
+                        </tr>
+                        <tr>
+                            <td>ChickenBiryani (Rs. 120)</td>
+                            <td><input type="text" id="ChickenBiryani"></td>
+                        </tr>
+                        <tr>
+                            <td>MuttonBiryani (Rs. 160)</td>
+                            <td><input type="text" id="MuttonBiryani"></td>
+                        </tr>
+                        <tr>
+                            <td>VegetableRice (Rs. 60)</td>
+                            <td><input type="text" id="VegetableRice"></td>
+                        </tr>
+                        <tr>
+                            <td>PaneerPulao (Rs. 80)</td>
+                            <td><input type="text" id="PaneerPulao"></td>
+                        </tr>
+                        <tr>
+                            <td>Parottaveg (Rs. 50):</td>
+                            <td><input type="text" id="Parottaveg"></td>
+                        </tr>
+                        <tr>
+                            <td>Tea (Rs. 15)</td>
+                            <td><input type="text" id="Tea"></td>
+                        </tr>
+                        <tr>
+                            <td>CappuccinoCoffee (Rs. 100)</td>
+                            <td><input type="text" id="CappuccinoCoffee"></td>
+                        </tr>
+                        <tr>
+                            <td>Lemon (Rs. 20)</td>
+                            <td><input type="text" id="Lemon"></td>
+                        </tr>
+                        <tr>
+                            <td>MasalaTea (Rs. 25)</td>
+                            <td><input type="text" id="MasalaTea"></td>
+                        </tr>
+                        <tr>
+                            <td>WatermelonSmoothie (Rs. 30)</td>
+                            <td><input type="text" id="WatermelonSmoothie"></td>
+                        </tr>
+                        <tr>
+                            <td>CupCakes (Rs. 80)</td>
+                            <td><input type="text" id="CupCakes"></td>
+                        </tr>
+                        <tr>
+                            <td>Icecreamscoop (Rs. 150)</td>
+                            <td><input type="text" id="Icecreamscoop"></td>
+                        </tr>
+                        <tr>
+                            <td>TiramisuCake (Rs. 100)</td>
+                            <td><input type="text" id="TiramisuCake"></td>
+                        </tr>
+                        <tr>
+                            <td>Chocolatecake (Rs. 125)</td>
+                            <td><input type="text" id="Chocolatecake"></td>
+                        </tr>
+                        <tr>
+                            <td>SweetpastryRoll (Rs. 10)</td>
+                            <td><input type="text" id="SweetpastryRoll"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <fieldset>
+                <legend>Your Bill</legend>
+                <h3>Your Name:<span id="Name"></span></h3>
+                <h3>Email: <span id="Email"></span></h3>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Menu</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Amout</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bill">
+                    </tbody>
+                </table>
+            </fieldset>
+            <h1>Total Amout: Rs. <span id="amount">0</span></h1>
+
+        </div>
+    </div>
+</body>
+<script>
+    var name = "", email = "";
+    var Idly = 10, Dosa = 35, Pongal = 40, ChickenBiryani = 120, MuttonBiryani = 160, VegetableRice = 60, PaneerPulao = 80, Parottaveg = 50, Tea = 15, CappuccinoCoffee = 100, Lemon = 20, MasalaTea = 25, WatermelonSmoothie = 30, CupCakes = 80, Icecreamscoop = 150, TiramisuCake = 100, Chocolatecake = 125, SweetpastryRoll = 20;
+    var Idly_q = 0, Dosa_q = 0, Pongal_q = 0, ChickenBiryani_q = 0, MuttonBiryani_q = 0, VegetableRice_q = 0, PaneerPulao_q = 0, Parottaveg_q = 0, Tea_q = 0, CappuccinoCoffee_q = 0, Lemon_q = 0, MasalaTea_q = 0, WatermelonSmoothie_q = 0, CupCakes_q = 0, Icecreamscoop_q = 0, TiramisuCake_q = 0, Chocolatecake_q = 0, SweetpastryRoll_q = 0;
+    var IdlyBill = "", DosaBill = "", PongalBill = "", ChickenBiryaniBill = "", MuttonBiryaniBill = "", VegetableRiceBill = "", PaneerPulaoBill = "", ParottavegBill = "", TeaBill = "", CappuccinoCoffeeBill = "", LemonBill = "", MasalaTeaBill = "", WatermelonSmoothieBill = "", CupCakesBill = "", IcecreamscoopBill = "", TiramisuCakeBill = "", ChocolatecakeBill = "", SweetpastryRollBill = "";
+    var total_amount = 0;
+
+
+    document.getElementById("name").addEventListener("keyup", function () {
+
+
+        document.getElementById("Name").innerHTML = this.value;
+    });
+
+    document.getElementById("email").addEventListener("keyup", function () {
+
+
+        document.getElementById("Email").innerHTML = this.value;
+    });
+
+
+
+    document.getElementById("Idly").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            IdlyBill = "";
+            Idly_q = 0;
+            showBill();
+        } else {
+            Idly_q = this.value;
+            IdlyBill = "<tr><td>Idly</td><td>Rs. " + Idly + "</td><td>" + Idly_q + "</td><td>" + Idly + "x" + Idly_q + " = " + Idly * Idly_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Dosa").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            DosaBill = "";
+            Dosa_q = 0;
+            showBill();
+        } else {
+            Dosa_q = this.value;
+            DosaBill = "<tr><td>Dosa</td><td>Rs. " + Dosa + "</td><td>" + Dosa_q + "</td><td>" + Dosa + "x" + Dosa_q + " = " + Dosa * Dosa_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Pongal").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            PongalBill = "";
+            Pongal_q = 0;
+            showBill();
+        } else {
+            Pongal_q = this.value;
+            PongalBill = "<tr><td>Pongal</td><td>Rs. " + Pongal + "</td><td>" + Pongal_q + "</td><td>" + Pongal + "x" + Pongal_q + " = " + Pongal * Pongal_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("ChickenBiryani").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            ChickenBiryaniBill = "";
+            ChickenBiryani_q = 0;
+            showBill();
+        } else {
+            ChickenBiryani_q = this.value;
+            ChickenBiryaniBill = "<tr><td>ChickenBiryani</td><td>Rs. " + ChickenBiryani + "</td><td>" + ChickenBiryani_q + "</td><td>" + ChickenBiryani + "x" + ChickenBiryani_q + " = " + ChickenBiryani * ChickenBiryani_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("MuttonBiryani").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            MuttonBiryaniBill = "";
+            MuttonBiryani_q = 0;
+            showBill();
+        } else {
+            MuttonBiryani_q = this.value;
+            MuttonBiryaniBill = "<tr><td>MuttonBiryani</td><td>Rs. " + MuttonBiryani + "</td><td>" + MuttonBiryani_q + "</td><td>" + MuttonBiryani + "x" + MuttonBiryani_q + " = " + MuttonBiryani * MuttonBiryani_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("VegetableRice").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            VegetableRiceBill = "";
+            VegetableRice_q = 0;
+            showBill();
+        } else {
+            VegetableRice_q = this.value;
+            VegetableRiceBill = "<tr><td>VegetableRice</td><td>Rs. " + VegetableRice + "</td><td>" + VegetableRice_q + "</td><td>" + VegetableRice + "x" + VegetableRice_q + " = " + VegetableRice * VegetableRice_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("PaneerPulao").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            PaneerPulaoBill = "";
+            PaneerPulao_q = 0;
+            showBill();
+        } else {
+            PaneerPulao_q = this.value;
+            PaneerPulaoBill = "<tr><td>PaneerPulao</td><td>Rs. " + PaneerPulao + "</td><td>" + PaneerPulao_q + "</td><td>" + PaneerPulao + "x" + PaneerPulao_q + " = " + PaneerPulao * PaneerPulao_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Tea").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            TeaBill = "";
+            Tea_q = 0;
+            showBill();
+        } else {
+            Tea_q = this.value;
+            TeaBill = "<tr><td>Tea</td><td>Rs. " + Tea + "</td><td>" + Tea_q + "</td><td>" + Tea + "x" + Tea_q + " = " + Tea * Tea_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Parottaveg").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            ParottavegBill = "";
+            Parottaveg_q = 0;
+            showBill();
+        } else {
+            Parottaveg_q = this.value;
+            ParottavegBill = "<tr><td>Parottaveg</td><td>Rs. " + Parottaveg + "</td><td>" + Parottaveg_q + "</td><td>" + Parottaveg + "x" + Parottaveg_q + " = " + Parottaveg * Parottaveg_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("CappuccinoCoffee").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            CappuccinoCoffeeBill = "";
+            CappuccinoCoffee_q = 0;
+            showBill();
+        } else {
+            CappuccinoCoffee_q = this.value;
+            CappuccinoCoffeeBill = "<tr><td>CappuccinoCoffee</td><td>Rs. " + CappuccinoCoffee + "</td><td>" + CappuccinoCoffee_q + "</td><td>" + CappuccinoCoffee + "x" + CappuccinoCoffee_q + " = " + CappuccinoCoffee * CappuccinoCoffee_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Lemon").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            LemonBill = "";
+            Lemon_q = 0;
+            showBill();
+        } else {
+            Lemon_q = this.value;
+            LemonBill = "<tr><td>Lemon</td><td>Rs. " + Lemon + "</td><td>" + Lemon_q + "</td><td>" + Lemon + "x" + Lemon_q + " = " + Lemon * Lemon_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("MasalaTea").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            MasalaTeaBill = "";
+            MasalaTea_q = 0;
+            showBill();
+        } else {
+            MasalaTea_q = this.value;
+            MasalaTeaBill = "<tr><td>MasalaTea</td><td>Rs. " + MasalaTea + "</td><td>" + MasalaTea_q + "</td><td>" + MasalaTea + "x" + MasalaTea_q + " = " + MasalaTea * MasalaTea_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("WatermelonSmoothie").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            WatermelonSmoothieBill = "";
+            WatermelonSmoothie_q = 0;
+            showBill();
+        } else {
+            WatermelonSmoothie_q = this.value;
+            WatermelonSmoothieBill = "<tr><td>WatermelonSmoothie</td><td>Rs. " + WatermelonSmoothie + "</td><td>" + WatermelonSmoothie_q + "</td><td>" + WatermelonSmoothie + "x" + WatermelonSmoothie_q + " = " + WatermelonSmoothie * WatermelonSmoothie_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("CupCakes").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            CupCakesBill = "";
+            CupCakes_q = 0;
+            showBill();
+        } else {
+            CupCakes_q = this.value;
+            CupCakesBill = "<tr><td>CupCakes</td><td>Rs. " + CupCakes + "</td><td>" + CupCakes_q + "</td><td>" + CupCakes + "x" + CupCakes_q + " = " + CupCakes * CupCakes_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Icecreamscoop").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            IcecreamscoopBill = "";
+            Icecreamscoop_q = 0;
+            showBill();
+        } else {
+            Icecreamscoop_q = this.value;
+            IcecreamscoopBill = "<tr><td>Icecreamscoop</td><td>Rs. " + Icecreamscoop + "</td><td>" + Icecreamscoop_q + "</td><td>" + Icecreamscoop + "x" + Icecreamscoop_q + " = " + Icecreamscoop * Icecreamscoop_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("TiramisuCake").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            TiramisuCakeBill = "";
+            TiramisuCake_q = 0;
+            showBill();
+        } else {
+            TiramisuCake_q = this.value;
+            TiramisuCakeBill = "<tr><td>TiramisuCake</td><td>Rs. " + TiramisuCake + "</td><td>" + TiramisuCake_q + "</td><td>" + TiramisuCake + "x" + TiramisuCake_q + " = " + TiramisuCake * TiramisuCake_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("Chocolatecake").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            ChocolatecakeBill = "";
+            Chocolatecake_q = 0;
+            showBill();
+        } else {
+            Chocolatecake_q = this.value;
+            ChocolatecakeBill = "<tr><td>Chocolatecake</td><td>Rs. " + Chocolatecake + "</td><td>" + Chocolatecake_q + "</td><td>" + Chocolatecake + "x" + Chocolatecake_q + " = " + Chocolatecake * Chocolatecake_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+    document.getElementById("SweetpastryRoll").addEventListener("keyup", function () {
+        if (this.value == "" || this.value == 0) {
+            SweetpastryRollBill = "";
+            SweetpastryRoll_q = 0;
+            showBill();
+        } else {
+            SweetpastryRoll_q = this.value;
+            SweetpastryRollBill = "<tr><td>SweetpastryRoll</td><td>Rs. " + SweetpastryRoll + "</td><td>" + SweetpastryRoll_q + "</td><td>" + SweetpastryRoll + "x" + SweetpastryRoll_q + " = " + SweetpastryRoll * SweetpastryRoll_q + "</td></tr>";
+            showBill();
+
+        }
+    });
+
+    function showBill() {
+        document.getElementById("bill").innerHTML = IdlyBill + DosaBill + PongalBill + ChickenBiryaniBill + MuttonBiryaniBill + VegetableRiceBill + PaneerPulaoBill + ParottavegBill + TeaBill + CappuccinoCoffeeBill + LemonBill + MasalaTeaBill + WatermelonSmoothieBill + CupCakesBill + IcecreamscoopBill + TiramisuCakeBill + ChocolatecakeBill + SweetpastryRollBill;
+        document.getElementById("amount").innerHTML = Idly * Idly_q + Dosa * Dosa_q + Pongal * Pongal_q + ChickenBiryani * ChickenBiryani_q + MuttonBiryani * MuttonBiryani_q + VegetableRice * VegetableRice_q + PaneerPulao * PaneerPulao_q + Parottaveg * Parottaveg_q + Tea * Tea_q + CappuccinoCoffee * CappuccinoCoffee_q + Lemon * Lemon_q + MasalaTea * MasalaTea_q + WatermelonSmoothie * WatermelonSmoothie_q + CupCakes * CupCakes_q + Icecreamscoop * Icecreamscoop_q + TiramisuCake * TiramisuCake_q + Chocolatecake * Chocolatecake_q + SweetpastryRoll * SweetpastryRoll_q;
+    }
+
+</script>
